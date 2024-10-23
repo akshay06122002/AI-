@@ -1,0 +1,76 @@
+ 
+                        Experiment - 4
+ 
+1. Algorithm:
+Import NLTK and Download Resources:
+• Import the necessary modules from NLTK, such as word_tokenize, PorterStemmer, WordNetLemmatizer, and stopwords.
+• Download required NLTK resources using nltk.download().
+2. Define Text:
+• Input the text you want to process.
+3. Tokenization:
+• Use sent_tokenize to split the text into sentences.
+• For each sentence, use word_tokenize to split it into words.
+4. Stemming:
+• Create an instance of PorterStemmer.
+• For each word token, apply stemming using the stem method of the stemmer.
+5. Lemmatization:
+• Create an instance of WordNetLemmatizer.
+• For each word token, apply lemmatization using the lemmatize method of the lemmatizer.
+ 
+ 
+CODE:
+ 
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.corpus import stopwords
+ 
+# Download NLTK resources if not already installed
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+ 
+# Sample text
+text = "The quick brown foxes are jumping over the lazy dogs. The dogs are not amused."
+ 
+# Tokenization
+tokens = word_tokenize(text)
+ 
+# Remove stop words
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+ 
+# Stemming
+stemmer = PorterStemmer()
+stemmed_tokens = [stemmer.stem(word) for word in filtered_tokens]
+ 
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+ 
+# Display the results
+print("Original Text:", text)
+print("\nTokenization:", tokens)
+print("\nFiltered Tokens (without stop words):", filtered_tokens)
+print("\nStemmed Tokens:", stemmed_tokens)
+print("\nLemmatized Tokens:", lemmatized_tokens)
+ 
+ 
+ 
+Output :
+ 
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt.zip.
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+Original Text: The quick brown foxes are jumping over the lazy dogs. The dogs are not amused.
+ 
+Tokenization: ['The', 'quick', 'brown', 'foxes', 'are', 'jumping', 'over', 'the', 'lazy', 'dogs', '.', 'The', 'dogs', 'are', 'not', 'amused', '.']
+ 
+Filtered Tokens (without stop words): ['quick', 'brown', 'foxes', 'jumping', 'lazy', 'dogs', '.', 'dogs', 'amused', '.']
+ 
+Stemmed Tokens: ['quick', 'brown', 'fox', 'jump', 'lazi', 'dog', '.', 'dog', 'amus', '.']
+ 
+Lemmatized Tokens: ['quick', 'brown', 'fox', 'jumping', 'lazy', 'dog', '.', 'dog', 'amused', '.']
+ 
